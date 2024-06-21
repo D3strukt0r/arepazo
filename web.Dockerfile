@@ -196,18 +196,52 @@ CMD ["nginx", "-g", "daemon off;"]
 # -----------------------------------------------------------------------------
 FROM phpfpm AS prod-phpfpm
 USER root
-#RUN \
-#    rm --recursive --force \
-#        ./wp-content/themes/twentytwentyfour \
-#    && wp-plugin-install.sh \
-#        jetpack \
-#    && wp-theme-install.sh \
-#        customify \
-#    \
-#    # Fix Permission
-#    && chown --recursive www-data:www-data . \
-#    && find . -type d -exec chmod 755 {} \; \
-#    && find . -type f -exec chmod 644 {} \;
+RUN \
+    rm --recursive --force \
+        ./wp-content/themes/twentytwentyfour \
+    && wp-plugin-install.sh \
+        block-options \
+        bulk-delete \
+        cloudflare \
+        disqus-comment-system \
+        duplicator \
+        fancybox-for-wordpress \
+        google-analytics-for-wordpress \
+        google-listings-and-ads \
+        homepage-control \
+        jetpack \
+        jetpack-boost \
+        jetpack-protect \
+        litespeed-cache \
+        loginizer \
+        polylang \
+        press-tab-to-search \
+        timber-library \
+        tinymce-advanced \
+        woocommerce \
+        woocommerce-coupon-shortcodes \
+        woocommerce-customizer \
+        woocommerce-eu-vat-compliance \
+        woocommerce-gateway-paypal-powered-by-braintree \
+        woocommerce-google-analytics-integration \
+        woocommerce-paypal-payments \
+        woocommerce-pdf-invoices-packing-slips \
+        woo-gutenberg-products-block \
+        wordpress-seo \
+        wpforms-lite \
+        wp-mail-smtp \
+        wpzoom-portfolio \
+        yith-essential-kit-for-woocommerce-1 \
+        yith-woocommerce-advanced-reviews \
+        yith-woocommerce-order-tracking \
+        yith-woocommerce-request-a-quote \
+    && wp-theme-install.sh \
+        inspiro-blocks \
+    \
+    # Fix Permission
+    && chown --recursive www-data:www-data . \
+    && find . -type d -exec chmod 755 {} \; \
+    && find . -type f -exec chmod 644 {} \;
 USER www-data
 
 FROM nginx AS prod-nginx
