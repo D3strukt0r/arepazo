@@ -5,7 +5,7 @@
 # https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions
 # -----------------------------------------------------------------------------
 # bookworm
-FROM wordpress:6.5-php8.3-fpm AS phpfpm
+FROM wordpress:6.6-php8.3-fpm AS phpfpm
 
 # Switch shell to bash for better support
 SHELL ["/bin/bash", "-e", "-u", "-x", "-o", "pipefail", "-c"]
